@@ -51,10 +51,7 @@ app.post("/users/signup", async (req, res) => {
     db.collection("users")
       .insertOne(newUser)
       .then(() => {
-        res.status(200).json({
-          Message: "User created successfully",
-          ...newUser,
-        });
+        res.status(200).json({ ...newUser });
       })
       .catch((err) => {
         res.status(500).json({ Error: " Error occured" });
