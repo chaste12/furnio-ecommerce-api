@@ -1,12 +1,12 @@
 # GET http://localhost:3000/users
 
 
-# POST http://localhost:3100/users/login
-# Content-Type: application/json
+POST https://furnio.herokuapp.com/users/login
+Content-Type: application/json
 
-# {
-#     "email": "deric@gmail.com",  
-#     "password": "pass123"
-# }
+{
+    "email": "chris@gmail.com",  
+    "password": "pass123"
+}
 
-GET https://furnio.herokuapp.com/users
+# GET https://furnio.herokuapp.com/users
