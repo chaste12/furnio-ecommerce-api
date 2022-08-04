@@ -11,9 +11,8 @@ let db;
 
 connectToDb((err) => {
   if (!err) {
-    app.listen(3100, () => {
-      console.log("app is listeing to port 3100");
-      console.log(process.cwd());
+    app.listen(3000, () => {
+      console.log("app is listeing to port 3000");
     });
   }
 
