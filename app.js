@@ -2,10 +2,12 @@ const express = require("express");
 const bcrypt = require("bcrypt");
 const { ObjectId } = require("mongodb");
 const { connectToDb, getToDb } = require("./db");
+const cors = require("cors");
 
 const app = express();
 
 app.use(express.json());
+app.use(cors());
 
 let db;
 
@@ -19,7 +21,12 @@ connectToDb((err) => {
   db = getToDb();
 });
 
-app.get("/users", (req, res) => {
+const corsOptions = {
+  origins: "http://localhost:3001/",
+  optionsSuccessStatus: 200,
+};
+
+app.get("/users", cors(corsOptions), (req, res) => {
   let users = [];
 
   db.collection("users")
@@ -36,7 +43,7 @@ app.get("/users", (req, res) => {
     });
 });
 
-app.post("/users/signup", async (req, res) => {
+app.post("/users/signup", cors(corsOptions), async (req, res) => {
   try {
     let { name, email, password } = req.body;
 
@@ -61,7 +68,7 @@ app.post("/users/signup", async (req, res) => {
   }
 });
 
-app.post("/users/login", async (req, res) => {
+app.post("/users/login", cors(corsOptions), async (req, res) => {
   const { email, password } = req.body;
 
   let user = [];
@@ -115,7 +122,7 @@ app.post("/users/login", async (req, res) => {
 //   })
 // })
 
-app.get("/products", (req, res) => {
+app.get("/products", cors(corsOptions), (req, res) => {
   let products = [];
 
   db.collection("products")
